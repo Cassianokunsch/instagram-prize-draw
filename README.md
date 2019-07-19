@@ -6,12 +6,12 @@ que é meu programa de comentar automagicamente os sorteios do Instagram, espero
 útil para vocês, porque pra mim vem sendo.
 
 ## Instalando
-1. Você vai precisar instalar o Python 3.6 ou maior na sua máquina.
-2. Instalar o Virtualenv
+1. Você vai precisar instalar o Python 3.6 ou superior na sua máquina. Aqui o link https://www.python.org/downloads/
+2. Instalar o Virtualenv (tem vários tutoriais na internet para diversos sistemas operacionais)
 3. Dar um clone nesse repositório
-4. Dar comando virtualenv env
+4. Dar comando virtualenv env dentro da pasta do repositório clonado.
 6. Dar o comando para ativar o virtualenv (Vária de Sistema Operacional)
-5. Dentro do diretório "\instagram-prize-draw" dar o comando no seu terminal: pip install -r requirements.txt
+5. Após ativar o virtualenv dentro do diretório "\instagram-prize-draw" dar o comando no seu terminal: pip install -r requirements.txt
 
 ## Como usar?
 
