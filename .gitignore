@@ -111,4 +111,4 @@ venv.bak/
 !.vscode/extensions.json
 
 # MadeComments
-/MadeComments
+MadeComments/*
