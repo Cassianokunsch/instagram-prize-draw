@@ -24,8 +24,11 @@ class AutoComment:
                     break
 
         if len(lst_of_comment_made) == len(lst_of_comment_to_do):
+            print(str(len(lst_of_comment_made)) + "comentários feitos!")
             print("Todos os comentarios foram feitos!")
         else:
+            print(str(len(lst_of_comment_made)) + 
+                    " comentários feitos de " + str(len(lst_of_comment_to_do)))
             print("Spam dectado! Aguarde algumas horas para comentar de novo!")
 
     def verify_coditions(self):
