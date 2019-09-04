@@ -58,6 +58,8 @@ def data_extract_update(user_id, type_of_extraction, api):
             print("Não foi possível atualizar o usuário: " + user_orm.username)
             print(e)
         time.sleep(1.5)
+    
+    print("Usuários atualizados..." + str(count) + "/" + str(len(result)))
 
 
 def data_extract_new(date_to_insert, user_id, type_of_extraction, api):
@@ -112,6 +114,8 @@ def data_extract_new(date_to_insert, user_id, type_of_extraction, api):
             print("Não foi possível inserir o usuário: " + user_orm.username)
             print(e)
         time.sleep(1.5)
+
+    print("Usuários extraídos..." + str(count) + "/" + str(len(data_not_in_db)))
 
 
 def start_extract(username, type_of_extraction, option):

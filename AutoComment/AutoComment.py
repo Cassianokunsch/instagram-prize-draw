@@ -24,8 +24,7 @@ class AutoComment:
                     break
 
         if len(lst_of_comment_made) == len(lst_of_comment_to_do):
-            print(str(len(lst_of_comment_made)) + "comentários feitos!")
-            print("Todos os comentarios foram feitos!")
+            print("Todos os comentarios foram feitos! Em um total de " + str(len(lst_of_comment_made)) + " comentários.")
         else:
             print(str(len(lst_of_comment_made)) + 
                     " comentários feitos de " + str(len(lst_of_comment_to_do)))
