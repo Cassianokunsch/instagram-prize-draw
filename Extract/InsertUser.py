@@ -21,6 +21,7 @@ def insert_or_updade_user(user):
     if len(result) == 1:
         user_old = result[0]
         user_old.username = user.username
+        user_old.password = user.password
         user_old.following_count = user.following_count
         user_old.follower_count = user.follower_count
         db.insert_or_update(user_old)
@@ -31,7 +32,8 @@ def insert_or_updade_user(user):
 def insert_user(username, password):
     api = InstagramApiCustom(username, password)
     if api.login_account():
-        api.searchUsername(username)
+        username_come_api = api.LastJson['logged_in_user']['username']
+        api.searchUsername(username_come_api)
         user_data = api.LastJson
         user_orm = create_user(user_data, password)
         insert_or_updade_user(user_orm)
