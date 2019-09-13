@@ -25,10 +25,11 @@ def data_to_delete(data, user_id, type_of_extraction):
         if user_orm.pk not in data_response:
             user_orm.delete = '*'
             data_to_mark_to_delete.append(user_orm)
-
+    print("Marcando " + str(len(data_to_mark_to_delete)) + " como deletados")
+    db.insert_or_update_all(data_to_mark_to_delete)
     print("Usuários marcados como deletados >>> " +
           str(len(data_to_mark_to_delete)))
-    db.insert_or_update_all(data_to_mark_to_delete)
+    
 
 
 def data_extract_update(user_id, type_of_extraction, api):
@@ -59,7 +60,7 @@ def data_extract_update(user_id, type_of_extraction, api):
             print(e)
         time.sleep(1.5)
     
-    print("Usuários atualizados..." + str(count) + "/" + str(len(result)))
+    print("Usuários atualizados..." + str(count) + "/" + str(len(result)) + "\n")
 
 
 def data_extract_new(date_to_insert, user_id, type_of_extraction, api):
@@ -115,27 +116,22 @@ def data_extract_new(date_to_insert, user_id, type_of_extraction, api):
             print(e)
         time.sleep(1.5)
 
-    print("Usuários extraídos..." + str(count) + "/" + str(len(data_not_in_db)))
+    print("Usuários extraídos..." + str(count) + "/" + str(len(data_not_in_db)) + "\n")
 
 
 def start_extract(username, type_of_extraction, option):
     user = get_user(username)
     api = InstagramApiCustom(user.username, user.password)
-    api.login_account()
-    if type_of_extraction == 1:
-        response = api.getTotalFollowers(user.pk)
-    elif type_of_extraction == 2:
-        response = api.getTotalFollowings(user.pk)
-    else:
-        print("Opção inválida! Seguidores - 1 / Seguindo - 2")
-        exit(0)
 
-    if option == 1:
-        data_extract_new(response, user.id, type_of_extraction, api)
-    elif option == 2:
-        data_extract_update(user.id, type_of_extraction, api)
-    elif option == 3:
-        data_to_delete(response, user.id, type_of_extraction)
-    else:
-        print("Opção inválida! Novos - 1 / Atualizar - 2 / Deletar - 3s")
-        exit(0)
+    if api.login_account():
+        if type_of_extraction == 1:
+            response = api.getTotalFollowers(user.pk)
+        elif type_of_extraction == 2:
+            response = api.getTotalFollowings(user.pk)
+
+        if option == 1:
+            data_extract_new(response, user.id, type_of_extraction, api)
+        elif option == 2:
+            data_extract_update(user.id, type_of_extraction, api)
+        elif option == 3:
+            data_to_delete(response, user.id, type_of_extraction)
